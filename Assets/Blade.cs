@@ -9,8 +9,8 @@ public class Blade : MonoBehaviour
     Camera cam;
 
     void Start(){
+         cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
-        cam = Camera.main;
     }
     void Update()
     {
