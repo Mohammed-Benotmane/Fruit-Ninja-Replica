@@ -7,8 +7,11 @@ public class FruitBehaviour : MonoBehaviour
     public GameObject fruitSliced;
     void OnTriggerEnter2D(Collider2D col){
         if(col.tag == "Blade"){
-            Instantiate(fruitSliced, transform.position, transform.rotation);
+            Vector3 direction = (col.transform.position - transform.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            Instantiate(fruitSliced, transform.position, rotation);
             Destroy(gameObject);
+
         }
     }
 }
