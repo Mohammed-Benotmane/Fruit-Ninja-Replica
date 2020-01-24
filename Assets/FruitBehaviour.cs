@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class FruitBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public GameObject fruitSliced;
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.tag == "Blade"){
+            Instantiate(fruitSliced, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 }
