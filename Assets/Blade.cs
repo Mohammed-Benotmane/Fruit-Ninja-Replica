@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Blade : MonoBehaviour
 {
+    public GameObject bladeTrailPrefab;
+    GameObject currentBladeTrail;
     bool isCutting = false;
     Rigidbody2D rb;
     Camera cam;
+    CircleCollider2D circle;
+    Vector2 previousPosition;
+    public float minCuttingVelocity = .001f;    
 
     void Start(){
-         cam = Camera.main;
+        cam = Camera.main;
         rb = GetComponent<Rigidbody2D>();
+        circle = GetComponent<CircleCollider2D>();
     }
     void Update()
     {
@@ -26,15 +32,28 @@ public class Blade : MonoBehaviour
     }
 
     void UpdateCut(){
-        rb.position = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 newPosition = cam.ScreenToWorldPoint(Input.mousePosition);
+        rb.position = newPosition;
+        float velocity = (newPosition - previousPosition).magnitude * Time.deltaTime;
+        if(velocity > minCuttingVelocity){
+            circle.enabled = true;
+        }else{
+            circle.enabled = false;
+        }
     }
 
     void StartCutting(){
         isCutting = true;
+        currentBladeTrail = Instantiate(bladeTrailPrefab,transform);
+        circle.enabled = false;
+        
     }
 
     void StopCutting(){
         isCutting = false;
+        currentBladeTrail.transform.SetParent(null);
+        Destroy(currentBladeTrail, 2f);
+        circle.enabled = false;
     }
 
 }
