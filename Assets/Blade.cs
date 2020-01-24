@@ -40,11 +40,13 @@ public class Blade : MonoBehaviour
         }else{
             circle.enabled = false;
         }
+        previousPosition = newPosition;
     }
 
     void StartCutting(){
         isCutting = true;
         currentBladeTrail = Instantiate(bladeTrailPrefab,transform);
+        previousPosition = cam.ScreenToWorldPoint(Input.mousePosition);
         circle.enabled = false;
         
     }
