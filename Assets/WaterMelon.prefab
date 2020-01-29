@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fruitSliced: {fileID: 7708244323412467351, guid: c12bc3a9d22ec7046aed9031ce0bdf3e,
     type: 3}
+  startForce: 13
