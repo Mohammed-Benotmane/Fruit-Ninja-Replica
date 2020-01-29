@@ -15,9 +15,9 @@ public class FruitBehaviour : MonoBehaviour
         if(col.tag == "Blade"){
             Vector3 direction = (col.transform.position - transform.position).normalized;
             Quaternion rotation = Quaternion.LookRotation(direction);
-            Instantiate(fruitSliced, transform.position, rotation);
+            GameObject slicedFruit =  Instantiate(fruitSliced, transform.position, rotation);
+            Destroy(slicedFruit,3f);
             Destroy(gameObject);
-
         }
     }
 }
