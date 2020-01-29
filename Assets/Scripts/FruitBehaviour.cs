@@ -6,7 +6,7 @@ public class FruitBehaviour : MonoBehaviour
 {
     public GameObject fruitSliced;
     Rigidbody2D rb;
-    public float startForce = 15f;
+    public float startForce = 7f;
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(transform.up * startForce, ForceMode2D.Impulse);
